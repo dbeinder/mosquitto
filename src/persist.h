@@ -64,7 +64,10 @@ struct PF_client_v5{
 	uint16_t id_len;
 };
 struct PF_client{
-	struct PF_client_v5;
+	int64_t session_expiry_time;
+	uint32_t session_expiry_interval;
+	uint16_t last_mid;
+	uint16_t id_len;
 	uint16_t listener_port;
 	uint16_t username_len;
 	/* 4 byte padding, because 64bit member 
