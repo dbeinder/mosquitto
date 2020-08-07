@@ -323,6 +323,7 @@ int log__vprintf(int priority, const char *fmt, va_list va)
 			}else{
 				fprintf(stdout, "%s\n", s);
 			}
+			fflush(stdout);
 		}
 		if(log_destinations & MQTT3_LOG_STDERR){
 			if(log_timestamp){
@@ -334,6 +335,7 @@ int log__vprintf(int priority, const char *fmt, va_list va)
 			}else{
 				fprintf(stderr, "%s\n", s);
 			}
+			fflush(stderr);
 		}
 		if(log_destinations & MQTT3_LOG_FILE && log_fptr){
 			if(log_timestamp){

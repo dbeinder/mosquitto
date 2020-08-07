@@ -1,0 +1,4 @@
+#from WSL
+sudo apt-get install mingw-w64
+make clean
+make

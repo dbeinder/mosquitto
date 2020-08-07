@@ -14,7 +14,8 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include <arpa/inet.h>
+//#include <arpa/inet.h>
+#include <winsock2.h>
 #include <assert.h>
 #include <errno.h>
 #include <fcntl.h>

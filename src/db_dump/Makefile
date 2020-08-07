@@ -1,6 +1,7 @@
 include ../../config.mk
-
-CFLAGS_FINAL=${CFLAGS} -I.. -I../../ -I../../lib -I../.. -I../deps -DWITH_BROKER -DWITH_PERSISTENCE
+CROSS_COMPILE=i686-w64-mingw32-
+CC=gcc
+CFLAGS_FINAL=${CFLAGS} -I.. -I../../ -I../../lib -I../.. -I../deps -DWITH_BROKER -DWITH_PERSISTENCE -fdata-sections -ffunction-sections
 
 OBJS = \
 	   db_dump.o \
@@ -22,7 +23,8 @@ OBJS = \
 all : mosquitto_db_dump
 
 mosquitto_db_dump : ${OBJS}
-	${CROSS_COMPILE}${CC} $^ -o $@ ${LDFLAGS} ${LIBS}
+	${CROSS_COMPILE}${CC} $^ -o $@ ${LDFLAGS} -lws2_32 -Wl,--gc-sections ${LIBS}
+	${CROSS_COMPILE}strip $@.exe
 
 db_dump.o : db_dump.c db_dump.h ../persist.h
 	${CROSS_COMPILE}${CC} $(CFLAGS_FINAL) -c $< -o $@
